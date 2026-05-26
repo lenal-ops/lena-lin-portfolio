@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lena Lin | 供应链运营与转型作品集</title>
+  <meta name="description" content="Lena Lin 的个人作品集，聚焦供应链运营、供应商治理、运营卓越、战略采购、流程优化和 AI 赋能运营转型。">
+  <style>
+    :root {
+      --ink: #182522;
+      --soft-ink: #4d5d57;
+      --paper: #f7f1e6;
+      --warm: #c9824f;
+      --sage: #dfe9e3;
+      --green: #254c45;
+      --clay: #a95f44;
+      --line: rgba(24, 37, 34, .16);
+      --white: #fffdf8;
+      --shadow: 0 24px 70px rgba(36, 55, 49, .13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(201, 130, 79, .18), transparent 28rem),
+        linear-gradient(180deg, #fbf7ef 0%, var(--paper) 44%, #eef5f0 100%);
+      font-family: Candara, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 38px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(24, 37, 34, .1);
+      background: rgba(251, 247, 239, .84);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 4vw, 46px);
+      line-height: .95;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--soft-ink);
+      font-size: 14px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(24, 37, 34, .18);
+      background: rgba(255, 253, 248, .62);
+      font-size: 12px;
+      font-weight: 700;
+      overflow: hidden;
+    }
+
+    .language-switch a,
+    .language-switch span {
+      display: inline-flex;
+      min-width: 42px;
+      min-height: 32px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+    }
+
+    .language-switch span {
+      background: var(--ink);
+      color: white;
+    }
+
+    .nav-links a {
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--warm);
+      color: var(--ink);
+    }
+
+    .hero {
+      min-height: calc(100vh - 70px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .96fr);
+      gap: 56px;
+      align-items: center;
+      padding: 74px 0 54px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--clay);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 720px;
+      font-size: clamp(38px, 4.6vw, 60px);
+      line-height: 1.08;
+    }
+
+    .hero-copy {
+      margin: 26px 0 0;
+      max-width: 680px;
+      color: var(--soft-ink);
+      font-size: 21px;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      padding: 0 18px;
+      background: var(--ink);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 30px;
+    }
+
+    .tags span {
+      border: 1px solid rgba(24, 37, 34, .18);
+      background: rgba(255, 253, 248, .64);
+      padding: 8px 11px;
+      color: #40524c;
+      font-size: 13px;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 560px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-top {
+      padding: 34px 32px 30px;
+      background: var(--green);
+      color: #f7f1e6;
+    }
+
+    .panel-top .label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      opacity: .76;
+    }
+
+    .panel-top strong {
+      display: block;
+      margin-top: 20px;
+      font-family: Georgia, serif;
+      font-size: 38px;
+      line-height: 1.06;
+      font-weight: 500;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      min-height: 132px;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:nth-child(even) {
+      border-right: 0;
+    }
+
+    .metric .number {
+      display: block;
+      font-family: Georgia, serif;
+      color: var(--green);
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .metric .caption {
+      display: block;
+      margin-top: 9px;
+      color: var(--soft-ink);
+      font-size: 14px;
+      line-height: 1.38;
+    }
+
+    .focus-list {
+      padding: 26px 28px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .focus-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(24, 37, 34, .1);
+    }
+
+    .focus-item:last-child {
+      border-bottom: 0;
+    }
+
+    .focus-item b {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--sage);
+      color: var(--green);
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .focus-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .focus-item span {
+      display: block;
+      color: var(--soft-ink);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .bar {
+      height: 10px;
+      background: var(--sage);
+      overflow: hidden;
+    }
+
+    .bar i {
+      display: block;
+      width: var(--w);
+      height: 100%;
+      background: var(--warm);
+    }
+
+    section {
+      padding: 78px 0;
+      border-top: 1px solid rgba(24, 37, 34, .1);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .45fr 1fr;
+      gap: 38px;
+      margin-bottom: 34px;
+      align-items: start;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.03;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 18px;
+      line-height: 1.62;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .about-card,
+    .project,
+    .skill-column {
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, .76);
+      box-shadow: 0 12px 38px rgba(36, 55, 49, .06);
+    }
+
+    .about-card {
+      padding: 22px;
+      min-height: 178px;
+    }
+
+    .about-card h3,
+    .skill-column h3 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .about-card p,
+    .skill-column li,
+    .project p {
+      color: var(--soft-ink);
+      line-height: 1.52;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: minmax(280px, .92fr) minmax(0, 1.08fr);
+      overflow: hidden;
+    }
+
+    .mockup {
+      min-height: 340px;
+      padding: 18px;
+      background: #ece6da;
+      border-right: 1px solid var(--line);
+    }
+
+    .dashboard-shot {
+      position: relative;
+      min-height: 340px;
+      padding: 0;
+      overflow: hidden;
+      background: #eee7dc;
+    }
+
+    .dashboard-frame {
+      width: 1440px;
+      height: 1040px;
+      border: 0;
+      transform: scale(.36);
+      transform-origin: top left;
+      pointer-events: none;
+      background: #efe7dc;
+    }
+
+    .dash {
+      height: 100%;
+      min-height: 304px;
+      background: #fffdf8;
+      border: 1px solid rgba(24, 37, 34, .18);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .dash-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--soft-ink);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .dash-title span:last-child {
+      color: var(--clay);
+      font-weight: 700;
+    }
+
+    .dash-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .dash-kpis div {
+      min-height: 58px;
+      padding: 10px;
+      background: var(--sage);
+    }
+
+    .dash-kpis strong {
+      display: block;
+      color: var(--green);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .dash-kpis small {
+      color: var(--soft-ink);
+      font-size: 11px;
+    }
+
+    .rows {
+      display: grid;
+      gap: 7px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 76px 1fr 44px;
+      gap: 8px;
+      align-items: center;
+      font-size: 11px;
+      color: var(--soft-ink);
+    }
+
+    .row .linebar {
+      height: 9px;
+      background: #efe8dd;
+    }
+
+    .row .linebar i {
+      display: block;
+      width: var(--w);
+      height: 100%;
+      background: var(--green);
+    }
+
+    .heatmap {
+      display: grid;
+      grid-template-columns: 72px repeat(5, 1fr);
+      gap: 6px;
+      font-size: 10px;
+      color: var(--soft-ink);
+      align-content: center;
+    }
+
+    .cell {
+      min-height: 30px;
+      padding: 7px 6px;
+      background: rgba(37, 76, 69, var(--a));
+      color: var(--c, #fffdf8);
+    }
+
+    .cell.label {
+      background: transparent;
+      color: var(--soft-ink);
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      align-content: center;
+    }
+
+    .step {
+      min-height: 96px;
+      padding: 12px;
+      background: var(--sage);
+      border-left: 4px solid var(--warm);
+      color: var(--green);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: 1fr .85fr;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .report-box {
+      min-height: 122px;
+      background: var(--sage);
+      padding: 12px;
+    }
+
+    .report-box.dark {
+      background: var(--green);
+      color: white;
+    }
+
+    .project-body {
+      padding: 28px;
+      display: grid;
+      align-content: center;
+    }
+
+    .project-body h3 {
+      font-size: clamp(27px, 3vw, 40px);
+      line-height: 1.04;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .project-meta span {
+      background: #efe8dd;
+      padding: 7px 9px;
+      color: #5e5246;
+      font-size: 12px;
+    }
+
+    .project-points {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .project-points li {
+      color: var(--soft-ink);
+      line-height: 1.45;
+    }
+
+    .project-points li::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 9px;
+      background: var(--warm);
+      transform: translateY(-1px);
+    }
+
+    .project-link {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 22px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: white;
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-column {
+      padding: 24px;
+    }
+
+    .skill-column ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .experience-band {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      background: transparent;
+      border: 0;
+    }
+
+    .experience-band div {
+      min-height: 132px;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .experience-band strong {
+      display: block;
+      font-family: Georgia, serif;
+      color: var(--green);
+      font-size: 30px;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .experience-band span {
+      color: var(--soft-ink);
+      line-height: 1.45;
+    }
+
+    .contact {
+      padding-bottom: 90px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+      padding: 34px;
+      background: var(--green);
+      color: #fffdf8;
+    }
+
+    .contact-card h2 {
+      max-width: 740px;
+    }
+
+    .contact-card p {
+      margin: 18px 0 0;
+      max-width: 720px;
+      color: rgba(255, 253, 248, .74);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .contact-links a {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 253, 248, .5);
+      color: #fffdf8;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: rgba(255, 253, 248, .62);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 940px) {
+      .hero,
+      .section-head,
+      .project,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 54px;
+      }
+
+      .hero-panel {
+        min-height: auto;
+        width: 100%;
+      }
+
+      .mockup {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .about-grid,
+      .skills-grid,
+      .experience-band {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-right {
+        width: 100%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 14px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .experience-band,
+      .metric-grid,
+      .dash-kpis,
+      .workflow,
+      .report-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .lead,
+      .contact-card p {
+        font-size: 17px;
+      }
+
+      .panel-top strong {
+        font-size: 32px;
+      }
+
+      .heatmap {
+        grid-template-columns: 60px repeat(5, minmax(34px, 1fr));
+        overflow-x: auto;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top">Lena Lin</a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="主导航">
+          <a href="#about">关于我</a>
+          <a href="#projects">项目</a>
+          <a href="#capabilities">能力</a>
+          <a href="#contact">联系</a>
+        </nav>
+        <div class="language-switch" aria-label="语言切换">
+          <a href="index.html">EN</a>
+          <span>中文</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="shell hero">
+      <div>
+        <p class="eyebrow">供应商治理 / 运营卓越 / AI 赋能运营</p>
+        <h1>供应链运营与转型</h1>
+        <p class="hero-copy">我关注复杂供应链如何更高效地运转：从供应商治理、交付风险、产能压力到跨部门协作，用系统化思维、数据分析、自动化和 AI 辅助方法提升运营可视化与决策质量。</p>
+        <div class="hero-actions">
+          <a class="button" href="#projects">查看项目</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/lena-lin-573a1330/" rel="noreferrer" data-external-link>LinkedIn</a>
+        </div>
+        <div class="tags" aria-label="Career keywords">
+          <span>供应商治理</span>
+          <span>运营卓越</span>
+          <span>战略采购</span>
+          <span>运营风险可视化</span>
+          <span>流程优化</span>
+          <span>AI 辅助运营</span>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="作品集概览">
+        <div class="panel-top">
+          <span class="label">作品集概览</span>
+          <strong>用系统化思维提升供应商治理、运营可视化和交付执行。</strong>
+        </div>
+        <div class="metric-grid">
+          <div class="metric">
+            <span class="number">10+</span>
+            <span class="caption">年生产、采购、零售运营与全球供应商协作经验</span>
+          </div>
+          <div class="metric">
+            <span class="number">5 / 13</span>
+            <span class="caption">管理多品牌、多生产品类与部门的复杂运营环境</span>
+          </div>
+          <div class="metric">
+            <span class="number">~3 FTE</span>
+            <span class="caption">通过 PO 流程自动化与流程重设计释放的效率</span>
+          </div>
+          <div class="metric">
+            <span class="number">~96%</span>
+            <span class="caption">通过关键路径管理和提前升级机制维持的 OTIF 表现</span>
+          </div>
+        </div>
+        <div class="focus-list">
+          <div class="focus-item"><b>1</b><div><strong>供应商治理</strong><span>让供应商表现、产能、交付风险和责任归属更容易被看见。</span></div></div>
+          <div class="focus-item"><b>2</b><div><strong>运营转型</strong><span>把反复出现的流程断点和交接问题转化为更稳定的运营机制。</span></div></div>
+          <div class="focus-item"><b>3</b><div><strong>AI 赋能运营</strong><span>用数据分析和自动化升级汇报、风险升级和供应商洞察。</span></div></div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="about">
+      <div class="shell">
+        <div class="section-head">
+          <h2>关于我</h2>
+          <p class="lead">我专注于复杂海外制造环境下的供应链运营、供应商治理和运营改善。</p>
+          <p class="lead">过去几年，我的工作已经从传统生产执行，延伸到跨部门流程优化、供应商表现可视化、运营风险管理和工作流改善。</p>
+          <p class="lead">我尤其关注供应链、数据分析、自动化和 AI 赋能运营转型的结合。长期来看，我希望继续深耕 AI 赋能的供应链运营、供应商治理和运营转型。</p>
+        </div>
+        <div class="about-grid">
+          <article class="about-card">
+            <h3>供应链运营</h3>
+            <p>覆盖海外供应商、关键路径、成本、产能、质量、物流和交付执行的端到端生产与采购运营。</p>
+          </article>
+          <article class="about-card">
+            <h3>供应商治理</h3>
+            <p>把供应商表现、运营风险、产能压力和交付可靠性转化成更清晰的可视化、责任归属和行动优先级。</p>
+          </article>
+          <article class="about-card">
+            <h3>运营转型</h3>
+            <p>通过工作流改善、汇报机制优化、自动化机会识别和 AI 辅助方法，提升运营节奏和决策质量。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="shell">
+        <div class="section-head">
+          <h2>经验重点</h2>
+          <p class="lead">我的经验集中在复杂海外制造环境下的跨部门供应链协作、供应商可视化、运营风险追踪和流程改善。</p>
+        </div>
+        <div class="about-grid">
+          <article class="about-card">
+            <h3>跨部门运营协作</h3>
+            <p>协调计划、产品开发、物流、质量和海外供应商，管理复杂生产与采购运营。</p>
+          </article>
+          <article class="about-card">
+            <h3>供应商可视化</h3>
+            <p>在多品牌和多供应商网络中，建立供应商表现、交付风险和运营风险追踪机制。</p>
+          </article>
+          <article class="about-card">
+            <h3>流程改善</h3>
+            <p>识别影响运营效率和交付节奏的重复流程问题与交接断点，并推动自动化机会、汇报机制优化和供应商表现可视化。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="shell">
+        <div class="section-head">
+          <h2>运营转型案例</h2>
+          <p class="lead">这些案例展示我如何用数据分析、汇报结构、自动化逻辑和 AI 辅助思路，提升供应链可视化、供应商治理和运营决策。重点不是工具本身，而是它帮助澄清和改善的运营问题。</p>
+        </div>
+
+        <div class="project-list">
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Supplier risk visibility case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/supplier-performance-dashboard.html" title="Supplier Risk Visibility Framework preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>供应商风险可视化框架（Supplier Risk Visibility Framework）</h3>
+              <div class="project-meta">
+                <span>OTIF 可视化</span>
+                <span>供应商排名</span>
+                <span>风险跟进</span>
+              </div>
+              <p>建立运营汇报和供应商可视化逻辑，用来追踪交付风险、供应商表现和流程瓶颈。</p>
+              <ul class="project-points">
+                <li>业务问题：供应商风险分散在不同订单、品类和负责人之间，难以横向比较。</li>
+                <li>我的动作：把 OTIF、延误责任、供应商表现分析和异常信号整合成一个可复用框架。</li>
+                <li>业务价值：更快升级风险、更有证据地讨论供应商表现，并减少重复人工汇报。</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/supplier-performance-dashboard.html">打开脱敏案例</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Supplier capacity case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/supplier-capacity-heatmap.html" title="Supplier Capacity Heatmap preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>供应商产能热力图（Supplier Capacity Heatmap）</h3>
+              <div class="project-meta">
+                <span>产能规划</span>
+                <span>超载识别</span>
+                <span>月度视图</span>
+              </div>
+              <p>建立供应商产能和运营风险视图，在延误发生前支持跨部门可视化、风险升级和决策。</p>
+              <ul class="project-points">
+                <li>业务问题：产能压力经常太晚才被看见，也很难快速解释清楚。</li>
+                <li>我的动作：按供应商和周期映射产能压力，识别超载风险点。</li>
+                <li>业务价值：更早升级、更早重新分配产能，也让跨部门团队对风险有共同语言。</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/supplier-capacity-heatmap.html">打开脱敏案例</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Operational exception reporting case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/supply-chain-intelligence-dashboard.html" title="Operational Exception Reporting preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>运营异常汇报机制（Operational Exception Reporting）</h3>
+              <div class="project-meta">
+                <span>PO 风险</span>
+                <span>关键路径</span>
+                <span>决策支持</span>
+              </div>
+              <p>建立运营异常汇报机制，把采购、生产状态、供应商延误风险和交付结果放到同一个运营视图中。</p>
+              <ul class="project-points">
+                <li>业务问题：PO 状态、关键路径、供应商问题和交付风险分散在不同地方。</li>
+                <li>我的动作：把这些信号连接成一个关注优先级和责任归属的结构。</li>
+                <li>业务价值：管理者可以快速看见哪里需要关注、为什么重要、下一步谁负责。</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/supply-chain-intelligence-dashboard.html">打开脱敏案例</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Supply chain workflow optimisation case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/weekly-supply-chain-report.html" title="Supply Chain Workflow Optimisation preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>供应链工作流优化（Supply Chain Workflow Optimisation）</h3>
+              <div class="project-meta">
+                <span>管理层汇报</span>
+                <span>品类复盘</span>
+                <span>行动清晰度</span>
+              </div>
+              <p>探索 AI 辅助方法在供应链分析、运营汇报和供应商洞察流程中的应用，通过结构化的每周异常复盘改善运营节奏。</p>
+              <ul class="project-points">
+                <li>业务问题：每周复盘需要更清楚的信号，而不是更多原始状态更新。</li>
+                <li>我的动作：把状态、根因、负责人和下一步行动整理成可重复使用的格式。</li>
+                <li>业务价值：让风险、取舍、责任归属和商业影响的讨论更清楚。</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/weekly-supply-chain-report.html">打开脱敏案例</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities">
+      <div class="shell">
+        <div class="section-head">
+          <h2>核心能力</h2>
+          <p class="lead">我不是在展示“会工具”，而是在呈现我理解复杂供应链问题，并能用系统化方法、数据分析、自动化和 AI 辅助流程改善运营体系的能力。</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-column">
+            <h3>治理与运营</h3>
+            <ul>
+              <li>供应商治理</li>
+              <li>运营卓越</li>
+              <li>供应链运营</li>
+              <li>战略采购</li>
+            </ul>
+          </div>
+          <div class="skill-column">
+            <h3>可视化与分析</h3>
+            <ul>
+              <li>供应商表现分析</li>
+              <li>运营风险可视化</li>
+              <li>供应链分析</li>
+              <li>自动化与汇报</li>
+            </ul>
+          </div>
+          <div class="skill-column">
+            <h3>转型能力</h3>
+            <ul>
+              <li>跨部门协同</li>
+              <li>流程优化</li>
+              <li>工作流改善</li>
+              <li>AI 辅助运营</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="experience-band" aria-label="Experience highlights">
+          <div><strong>10+</strong><span>年生产、采购和零售运营经验</span></div>
+          <div><strong>5 / 13</strong><span>多品牌、多生产品类与部门的管理范围</span></div>
+          <div><strong>6-9</strong><span>带领协调员团队完成工作流与运营模式调整</span></div>
+          <div><strong>~96%</strong><span>通过关键路径和主动风险管理维持的供应商 OTIF 表现</span></div>
+          <div><strong>~3 FTE</strong><span>与 IT 合作推进 PO 流程自动化带来的效率提升</span></div>
+          <div><strong>2-3%</strong><span>通过供应商谈判和成本优化带来的毛利改善</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="shell">
+        <div class="contact-card">
+          <div>
+            <p class="eyebrow">欢迎联系</p>
+            <h2>如果你有供应链、采购、生产运营或 AI 赋能运营相关机会，欢迎联系我。</h2>
+            <p>我尤其关注能把生产运营经验、供应商治理和数据化运营工具结合起来的岗位：提升可视化、降低风险、支持商业决策，并把复杂运营问题转化为清楚的行动。</p>
+            <p class="note">作品集中的项目示例均已脱敏并使用示例数据重绘，以保护真实业务信息。</p>
+          </div>
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/lena-lin-573a1330/" rel="noreferrer" data-external-link>LinkedIn</a>
+            <a href="mailto:vlenav@hotmail.com?subject=Portfolio%20enquiry%20-%20Lena%20Lin">邮箱：vlenav@hotmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll("[data-external-link]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = link.href;
+      });
+    });
+  </script>
+</body>
+</html>

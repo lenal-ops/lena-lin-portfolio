@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lena Lin | Supply Chain Operations & Transformation</title>
+  <meta name="description" content="Lena Lin portfolio focused on supply chain operations, supplier governance, operational excellence, strategic sourcing, process optimisation, and AI-enabled operational transformation.">
+  <style>
+    :root {
+      --ink: #182522;
+      --soft-ink: #4d5d57;
+      --paper: #f7f1e6;
+      --warm: #c9824f;
+      --sage: #dfe9e3;
+      --green: #254c45;
+      --clay: #a95f44;
+      --line: rgba(24, 37, 34, .16);
+      --white: #fffdf8;
+      --shadow: 0 24px 70px rgba(36, 55, 49, .13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(201, 130, 79, .18), transparent 28rem),
+        linear-gradient(180deg, #fbf7ef 0%, var(--paper) 44%, #eef5f0 100%);
+      font-family: Candara, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 38px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(24, 37, 34, .1);
+      background: rgba(251, 247, 239, .84);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 4vw, 46px);
+      line-height: .95;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--soft-ink);
+      font-size: 14px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(24, 37, 34, .18);
+      background: rgba(255, 253, 248, .62);
+      font-size: 12px;
+      font-weight: 700;
+      overflow: hidden;
+    }
+
+    .language-switch a,
+    .language-switch span {
+      display: inline-flex;
+      min-width: 42px;
+      min-height: 32px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+    }
+
+    .language-switch span {
+      background: var(--ink);
+      color: white;
+    }
+
+    .nav-links a {
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--warm);
+      color: var(--ink);
+    }
+
+    .hero {
+      min-height: calc(100vh - 70px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .96fr);
+      gap: 56px;
+      align-items: center;
+      padding: 74px 0 54px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--clay);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 720px;
+      font-size: clamp(38px, 4.6vw, 60px);
+      line-height: 1.08;
+    }
+
+    .hero-copy {
+      margin: 26px 0 0;
+      max-width: 680px;
+      color: var(--soft-ink);
+      font-size: 21px;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      padding: 0 18px;
+      background: var(--ink);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 30px;
+    }
+
+    .tags span {
+      border: 1px solid rgba(24, 37, 34, .18);
+      background: rgba(255, 253, 248, .64);
+      padding: 8px 11px;
+      color: #40524c;
+      font-size: 13px;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 560px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-top {
+      padding: 34px 32px 30px;
+      background: var(--green);
+      color: #f7f1e6;
+    }
+
+    .panel-top .label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      opacity: .76;
+    }
+
+    .panel-top strong {
+      display: block;
+      margin-top: 20px;
+      font-family: Georgia, serif;
+      font-size: 38px;
+      line-height: 1.06;
+      font-weight: 500;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      min-height: 132px;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:nth-child(even) {
+      border-right: 0;
+    }
+
+    .metric .number {
+      display: block;
+      font-family: Georgia, serif;
+      color: var(--green);
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .metric .caption {
+      display: block;
+      margin-top: 9px;
+      color: var(--soft-ink);
+      font-size: 14px;
+      line-height: 1.38;
+    }
+
+    .focus-list {
+      padding: 26px 28px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .focus-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(24, 37, 34, .1);
+    }
+
+    .focus-item:last-child {
+      border-bottom: 0;
+    }
+
+    .focus-item b {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--sage);
+      color: var(--green);
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .focus-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .focus-item span {
+      display: block;
+      color: var(--soft-ink);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .bar {
+      height: 10px;
+      background: var(--sage);
+      overflow: hidden;
+    }
+
+    .bar i {
+      display: block;
+      width: var(--w);
+      height: 100%;
+      background: var(--warm);
+    }
+
+    section {
+      padding: 78px 0;
+      border-top: 1px solid rgba(24, 37, 34, .1);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .45fr 1fr;
+      gap: 38px;
+      margin-bottom: 34px;
+      align-items: start;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.03;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 18px;
+      line-height: 1.62;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .about-card,
+    .project,
+    .skill-column {
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, .76);
+      box-shadow: 0 12px 38px rgba(36, 55, 49, .06);
+    }
+
+    .about-card {
+      padding: 22px;
+      min-height: 178px;
+    }
+
+    .about-card h3,
+    .skill-column h3 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .about-card p,
+    .skill-column li,
+    .project p {
+      color: var(--soft-ink);
+      line-height: 1.52;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: minmax(280px, .92fr) minmax(0, 1.08fr);
+      overflow: hidden;
+    }
+
+    .mockup {
+      min-height: 340px;
+      padding: 18px;
+      background: #ece6da;
+      border-right: 1px solid var(--line);
+    }
+
+    .dashboard-shot {
+      position: relative;
+      min-height: 340px;
+      padding: 0;
+      overflow: hidden;
+      background: #eee7dc;
+    }
+
+    .dashboard-frame {
+      width: 1440px;
+      height: 1040px;
+      border: 0;
+      transform: scale(.36);
+      transform-origin: top left;
+      pointer-events: none;
+      background: #efe7dc;
+    }
+
+    .dash {
+      height: 100%;
+      min-height: 304px;
+      background: #fffdf8;
+      border: 1px solid rgba(24, 37, 34, .18);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .dash-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--soft-ink);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .dash-title span:last-child {
+      color: var(--clay);
+      font-weight: 700;
+    }
+
+    .dash-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .dash-kpis div {
+      min-height: 58px;
+      padding: 10px;
+      background: var(--sage);
+    }
+
+    .dash-kpis strong {
+      display: block;
+      color: var(--green);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .dash-kpis small {
+      color: var(--soft-ink);
+      font-size: 11px;
+    }
+
+    .rows {
+      display: grid;
+      gap: 7px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 76px 1fr 44px;
+      gap: 8px;
+      align-items: center;
+      font-size: 11px;
+      color: var(--soft-ink);
+    }
+
+    .row .linebar {
+      height: 9px;
+      background: #efe8dd;
+    }
+
+    .row .linebar i {
+      display: block;
+      width: var(--w);
+      height: 100%;
+      background: var(--green);
+    }
+
+    .heatmap {
+      display: grid;
+      grid-template-columns: 72px repeat(5, 1fr);
+      gap: 6px;
+      font-size: 10px;
+      color: var(--soft-ink);
+      align-content: center;
+    }
+
+    .cell {
+      min-height: 30px;
+      padding: 7px 6px;
+      background: rgba(37, 76, 69, var(--a));
+      color: var(--c, #fffdf8);
+    }
+
+    .cell.label {
+      background: transparent;
+      color: var(--soft-ink);
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      align-content: center;
+    }
+
+    .step {
+      min-height: 96px;
+      padding: 12px;
+      background: var(--sage);
+      border-left: 4px solid var(--warm);
+      color: var(--green);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: 1fr .85fr;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .report-box {
+      min-height: 122px;
+      background: var(--sage);
+      padding: 12px;
+    }
+
+    .report-box.dark {
+      background: var(--green);
+      color: white;
+    }
+
+    .project-body {
+      padding: 28px;
+      display: grid;
+      align-content: center;
+    }
+
+    .project-body h3 {
+      font-size: clamp(27px, 3vw, 40px);
+      line-height: 1.04;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .project-meta span {
+      background: #efe8dd;
+      padding: 7px 9px;
+      color: #5e5246;
+      font-size: 12px;
+    }
+
+    .project-points {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .project-points li {
+      color: var(--soft-ink);
+      line-height: 1.45;
+    }
+
+    .project-points li::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 9px;
+      background: var(--warm);
+      transform: translateY(-1px);
+    }
+
+    .project-link {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 22px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: white;
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-column {
+      padding: 24px;
+    }
+
+    .skill-column ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .experience-band {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      background: transparent;
+      border: 0;
+    }
+
+    .experience-band div {
+      min-height: 132px;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .experience-band strong {
+      display: block;
+      font-family: Georgia, serif;
+      color: var(--green);
+      font-size: 30px;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .experience-band span {
+      color: var(--soft-ink);
+      line-height: 1.45;
+    }
+
+    .contact {
+      padding-bottom: 90px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+      padding: 34px;
+      background: var(--green);
+      color: #fffdf8;
+    }
+
+    .contact-card h2 {
+      max-width: 740px;
+    }
+
+    .contact-card p {
+      margin: 18px 0 0;
+      max-width: 720px;
+      color: rgba(255, 253, 248, .74);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .contact-links a {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 253, 248, .5);
+      color: #fffdf8;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: rgba(255, 253, 248, .62);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 940px) {
+      .hero,
+      .section-head,
+      .project,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 54px;
+      }
+
+      .hero-panel {
+        min-height: auto;
+        width: 100%;
+      }
+
+      .mockup {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .about-grid,
+      .skills-grid,
+      .experience-band {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-right {
+        width: 100%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 14px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .experience-band,
+      .metric-grid,
+      .dash-kpis,
+      .workflow,
+      .report-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .lead,
+      .contact-card p {
+        font-size: 17px;
+      }
+
+      .panel-top strong {
+        font-size: 32px;
+      }
+
+      .heatmap {
+        grid-template-columns: 60px repeat(5, minmax(34px, 1fr));
+        overflow-x: auto;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top">Lena Lin</a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="language-switch" aria-label="Language switch">
+          <span>EN</span>
+          <a href="index-zh.html">中文</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="shell hero">
+      <div>
+        <p class="eyebrow">Supplier Governance / Operational Excellence / AI-enabled Operations</p>
+        <h1>Supply Chain Operations & Transformation</h1>
+        <p class="hero-copy">I understand complex supply chain problems and use systems, analytics, automation, and AI-enabled approaches to improve operational visibility, supplier governance, and cross-functional decision-making.</p>
+        <div class="hero-actions">
+          <a class="button" href="#projects">View Projects</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/lena-lin-573a1330/" rel="noreferrer" data-external-link>LinkedIn</a>
+        </div>
+        <div class="tags" aria-label="Career keywords">
+          <span>Supplier Governance</span>
+          <span>Operational Excellence</span>
+          <span>Strategic Sourcing</span>
+          <span>Operational Risk Visibility</span>
+          <span>Process Optimisation</span>
+          <span>AI-Assisted Operations</span>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Portfolio snapshot">
+        <div class="panel-top">
+          <span class="label">Portfolio Snapshot</span>
+          <strong>Supply chain operator using systems thinking to improve governance, visibility, and execution.</strong>
+        </div>
+        <div class="metric-grid">
+          <div class="metric">
+            <span class="number">10+</span>
+            <span class="caption">years across production, sourcing, retail and global supplier coordination</span>
+          </div>
+          <div class="metric">
+            <span class="number">5 / 13</span>
+            <span class="caption">brands and divisions managed across a complex production environment</span>
+          </div>
+          <div class="metric">
+            <span class="number">~3 FTE</span>
+            <span class="caption">efficiency gain from PO workflow automation and process redesign</span>
+          </div>
+          <div class="metric">
+            <span class="number">~96%</span>
+            <span class="caption">OTIF maintained through critical path control and early escalation</span>
+          </div>
+        </div>
+        <div class="focus-list">
+          <div class="focus-item"><b>1</b><div><strong>Supplier governance</strong><span>Performance, capacity, delivery risk, and accountability made easier to see.</span></div></div>
+          <div class="focus-item"><b>2</b><div><strong>Operational transformation</strong><span>Recurring workflow and handover gaps translated into better operating systems.</span></div></div>
+          <div class="focus-item"><b>3</b><div><strong>AI-enabled operations</strong><span>Analytics and automation used to upgrade reporting, escalation, and supplier intelligence.</span></div></div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="about">
+      <div class="shell">
+        <div class="section-head">
+          <h2>About Me</h2>
+          <p class="lead">I specialise in supply chain operations, supplier governance, and operational improvement across complex offshore manufacturing environments.</p>
+          <p class="lead">Over the past few years, my work has evolved beyond traditional production execution into cross-functional process optimisation, supplier performance visibility, operational risk management, and workflow improvement.</p>
+          <p class="lead">I am particularly interested in the intersection of supply chain, analytics, automation, and AI-enabled operational transformation. Long term, I am focused on the future of AI-enabled supply chain operations, supplier governance, and operational transformation.</p>
+        </div>
+        <div class="about-grid">
+          <article class="about-card">
+            <h3>Supply Chain Operations</h3>
+            <p>End-to-end production and sourcing operations across offshore suppliers, critical path, cost, capacity, quality, shipping, and delivery execution.</p>
+          </article>
+          <article class="about-card">
+            <h3>Supplier Governance</h3>
+            <p>Supplier performance, operational risk, capacity pressure, and delivery reliability translated into clearer visibility and accountability.</p>
+          </article>
+          <article class="about-card">
+            <h3>Operational Transformation</h3>
+            <p>Workflow improvement, reporting optimisation, automation opportunities, and AI-assisted approaches used to strengthen operating rhythm and decision quality.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Experience Focus</h2>
+          <p class="lead">My experience sits across cross-functional supply chain coordination, supplier visibility, operational risk tracking, and process improvement in complex offshore manufacturing environments.</p>
+        </div>
+        <div class="about-grid">
+          <article class="about-card">
+            <h3>Cross-Functional Operations</h3>
+            <p>Led cross-functional coordination across Planning, Product Development, Shipping, QA, and offshore suppliers to manage complex production and sourcing operations.</p>
+          </article>
+          <article class="about-card">
+            <h3>Supplier Visibility</h3>
+            <p>Developed supplier visibility and operational risk tracking processes across multiple brands and supplier networks.</p>
+          </article>
+          <article class="about-card">
+            <h3>Workflow Improvement</h3>
+            <p>Identified recurring workflow and handover gaps impacting operational efficiency and delivery timelines, then supported automation opportunities, reporting optimisation, and supplier performance visibility.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Operational Transformation Work</h2>
+          <p class="lead">These examples show how I use analytics, reporting structure, automation logic, and AI-assisted thinking to improve supply chain visibility, supplier governance, and operational decision-making. The focus is not the tool itself, but the operating problem it helps clarify.</p>
+        </div>
+
+        <div class="project-list">
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Supplier risk visibility case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/supplier-performance-dashboard.html" title="Supplier Risk Visibility Framework preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Supplier Risk Visibility Framework</h3>
+              <div class="project-meta">
+                <span>OTIF visibility</span>
+                <span>Supplier ranking</span>
+                <span>Risk tracking</span>
+              </div>
+              <p>Built operational reporting and supplier visibility logic to improve tracking of delivery risk, supplier performance, and workflow bottlenecks.</p>
+              <ul class="project-points">
+                <li>Business problem: supplier risk was hard to compare across orders, categories, and owners.</li>
+                <li>Action: structured OTIF, delay ownership, supplier performance analytics, and issue signals into one framework.</li>
+                <li>Value: faster escalation, stronger supplier evidence, and less repeated manual reporting.</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/supplier-performance-dashboard.html">Open Sanitised Case Study</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Supplier capacity case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/supplier-capacity-heatmap.html" title="Supplier Capacity Heatmap preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Supplier Capacity Heatmap</h3>
+              <div class="project-meta">
+                <span>Capacity planning</span>
+                <span>Overload detection</span>
+                <span>Monthly view</span>
+              </div>
+              <p>Developed supplier capacity and operational risk views to support cross-functional visibility, escalation, and decision-making before delays materialise.</p>
+              <ul class="project-points">
+                <li>Business problem: capacity pressure was visible too late and difficult to explain quickly.</li>
+                <li>Action: mapped booking pressure by supplier and period to identify overload points.</li>
+                <li>Value: clearer escalation, earlier rebalancing, and shared language across teams.</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/supplier-capacity-heatmap.html">Open Sanitised Case Study</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Operational exception reporting case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/supply-chain-intelligence-dashboard.html" title="Operational Exception Reporting preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Operational Exception Reporting</h3>
+              <div class="project-meta">
+                <span>PO risk</span>
+                <span>Critical path</span>
+                <span>Decision support</span>
+              </div>
+              <p>Created operational exception reporting that connects sourcing, production status, supplier delay risk, and delivery outcomes in one operating view.</p>
+              <ul class="project-points">
+                <li>Business problem: PO status, critical path, supplier issues, and delivery risk lived in separate places.</li>
+                <li>Action: connected the signals into a single structure focused on priority and ownership.</li>
+                <li>Value: managers can see what needs attention now, why it matters, and who owns the next step.</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/supply-chain-intelligence-dashboard.html">Open Sanitised Case Study</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="mockup dashboard-shot" aria-label="Supply chain workflow optimisation case study preview">
+              <iframe class="dashboard-frame" src="sanitised-dashboards/weekly-supply-chain-report.html" title="Supply Chain Workflow Optimisation preview" loading="lazy"></iframe>
+            </div>
+            <div class="project-body">
+              <h3>Supply Chain Workflow Optimisation</h3>
+              <div class="project-meta">
+                <span>Executive reporting</span>
+                <span>Category review</span>
+                <span>Action clarity</span>
+              </div>
+              <p>Explored AI-assisted approaches for supply chain analytics, operational reporting, and supplier intelligence workflows through structured weekly exception review.</p>
+              <ul class="project-points">
+                <li>Business problem: weekly reviews needed clearer signal, not more raw status updates.</li>
+                <li>Action: connected status, root cause, ownership, and next action in a repeatable format.</li>
+                <li>Value: clearer conversations around risk, trade-offs, accountability, and business impact.</li>
+              </ul>
+              <a class="project-link" href="sanitised-dashboards/weekly-supply-chain-report.html">Open Sanitised Case Study</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Core Strengths</h2>
+          <p class="lead">I do not sell tools. I sell the ability to understand complex supply chain problems and improve operations through systems, analytics, automation, and AI-enabled workflows.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-column">
+            <h3>Governance & Operations</h3>
+            <ul>
+              <li>Supplier Governance</li>
+              <li>Operational Excellence</li>
+              <li>Supply Chain Operations</li>
+              <li>Strategic Sourcing</li>
+            </ul>
+          </div>
+          <div class="skill-column">
+            <h3>Visibility & Analytics</h3>
+            <ul>
+              <li>Supplier Performance Analytics</li>
+              <li>Operational Risk Visibility</li>
+              <li>Supply Chain Analytics</li>
+              <li>Automation & Reporting</li>
+            </ul>
+          </div>
+          <div class="skill-column">
+            <h3>Transformation</h3>
+            <ul>
+              <li>Cross-Functional Alignment</li>
+              <li>Process Optimisation</li>
+              <li>Workflow Improvement</li>
+              <li>AI-Assisted Operations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="experience-band" aria-label="Experience highlights">
+          <div><strong>10+</strong><span>years in production, sourcing and retail operations</span></div>
+          <div><strong>5 / 13</strong><span>brands and production divisions managed across a multi-brand environment</span></div>
+          <div><strong>6-9</strong><span>coordinators led through workflow and operating model change</span></div>
+          <div><strong>~96%</strong><span>supplier OTIF maintained through proactive critical path management</span></div>
+          <div><strong>~3 FTE</strong><span>efficiency gain from PO workflow automation with IT partners</span></div>
+          <div><strong>2-3%</strong><span>margin improvement delivered through supplier negotiation and cost optimisation</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="shell">
+        <div class="contact-card">
+          <div>
+            <p class="eyebrow">Let’s connect</p>
+            <h2>If you have an opportunity across Supply Chain, Sourcing, Production Operations, or AI-enabled operations, I would be happy to connect.</h2>
+            <p>I am especially interested in roles where production leadership, supplier knowledge, and data-driven operating tools can improve visibility, reduce risk, support commercial decisions, and turn operational complexity into action.</p>
+            <p class="note">Portfolio examples are anonymised and rebuilt with illustrative data to protect confidential business information.</p>
+          </div>
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/lena-lin-573a1330/" rel="noreferrer" data-external-link>LinkedIn</a>
+            <a href="mailto:vlenav@hotmail.com?subject=Portfolio%20enquiry%20-%20Lena%20Lin">Email: vlenav@hotmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll("[data-external-link]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = link.href;
+      });
+    });
+  </script>
+</body>
+</html>
