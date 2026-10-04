@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Synthetic supplier capacity demonstration. Invented data only; not actual performance.">
+<title>Supplier Capacity Heat Map — SYNTHETIC DEMO</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:12px}
+.hdr{background:#1a1a2e;color:white;padding:14px 24px}
+.hdr h1{font-size:16px;font-weight:700}
+.hdr p{font-size:10px;opacity:.6;margin-top:2px}
+.fbar{background:white;border-bottom:1px solid #ddd;padding:10px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.fbar label{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px}
+select,input[type=text]{font-size:11px;padding:5px 8px;border:1px solid #ddd;border-radius:5px;background:white}
+input[type=text]{width:82px}
+.fsep{width:1px;height:20px;background:#eee;margin:0 2px}
+.legend{background:white;border-bottom:1px solid #eee;padding:8px 24px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.li{display:flex;align-items:center;gap:5px;font-size:10px;color:#555}
+.ld{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+.sbar{background:#f8f9fa;border-bottom:1px solid #eee;padding:8px 24px;display:flex;gap:20px;align-items:center}
+.sc{font-size:11px;color:#666}
+.sc b{color:#1a1a2e;font-size:15px;display:block}
+.sc b.red{color:#c0392b}
+.sc b.orange{color:#e67e22}
+.wrap{overflow-x:auto;padding:16px 24px}
+table{border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+thead th{background:#1a1a2e;color:white;padding:8px 4px;text-align:center;font-size:10px;font-weight:600;white-space:nowrap;min-width:58px}
+thead th.h-name{text-align:left;width:230px;min-width:230px;position:sticky;left:0;z-index:3;padding-left:12px}
+tbody td{padding:0;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.nc{position:sticky;left:0;z-index:2;width:230px;min-width:230px;display:flex;align-items:center;gap:6px;padding:7px 10px 7px 12px;user-select:none}
+[data-k]{cursor:pointer}
+[data-k]:hover{filter:brightness(1.07)}
+.s-nc{background:#1a1a2e;color:white;font-weight:700;font-size:11px}
+.g-nc{background:#eef0f5;color:#222;font-weight:600;font-size:11px;padding-left:26px !important}
+.d-nc{background:#fafafa;color:#777;font-size:10px;padding-left:42px !important;cursor:default}
+.arr{font-size:9px;flex-shrink:0;transition:transform .15s}
+.arr.open{transform:rotate(90deg)}
+.nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.b-hab{background:#e67e22;color:white;font-size:8px;padding:2px 5px;border-radius:3px;flex-shrink:0}
+.b-dly{background:#c0392b;color:white;font-size:8px;padding:2px 5px;border-radius:3px;flex-shrink:0;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell{width:56px;min-height:36px;text-align:center;border-radius:3px;padding:3px 2px;margin:1px auto;transition:transform .1s}
+[data-cid]{cursor:pointer}
+[data-cid]:hover{transform:scale(1.08)}
+.cq{font-weight:700;font-size:10px;line-height:1.4}
+.cp{font-size:9px;opacity:.8}
+td.mc{padding:2px 1px}
+.c-e{background:#efefef;color:#ccc}
+.c-l{background:#d4edda;color:#155724}
+.c-n{background:#cce5ff;color:#004085}
+.c-m{background:#fff3cd;color:#856404}
+.c-h{background:#f8d7da;color:#721c24}
+.c-c{background:#c0392b;color:white}
+.dly-cell{outline:2px solid #c0392b;outline-offset:-2px}
+.tip{display:none;position:fixed;background:#1a1a2e;color:white;font-size:11px;padding:12px 16px;border-radius:8px;z-index:9999;pointer-events:none;box-shadow:0 6px 24px rgba(0,0,0,.5);min-width:210px;line-height:1.9}
+.tip-title{font-weight:700;font-size:12px;margin-bottom:7px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.15)}
+.tip-row{display:flex;justify-content:space-between;gap:20px}
+.tip-lbl{color:rgba(255,255,255,.55);font-size:10px}
+.tip-val{font-weight:600}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>Supplier Capacity Heat Map — SYNTHETIC DEMO</h1>
+  <p>SYNTHETIC DATA ONLY — Invented suppliers, quantities, prices, dates and relationships; not actual performance. &middot; Qty Ordered &middot; Click row to expand &middot; Hover cell for details</p>
+</div>
+<div class="fbar">
+  <label>Supplier:</label>
+  <select id="fSup" style="max-width:180px"><option value="">All Suppliers</option></select>
+  <div class="fsep"></div>
+  <label>Division:</label>
+  <select id="fDiv"><option value="">All</option></select>
+  <label>Garment Type:</label>
+  <select id="fGT"><option value="">All</option></select>
+  <div class="fsep"></div>
+  <label>From:</label>
+  <input type="text" id="fFrom" value="2030-01">
+  <label>To:</label>
+  <input type="text" id="fTo" value="2030-06">
+  <div class="fsep"></div>
+  <label>Risk:</label>
+  <select id="fRisk">
+    <option value="">All</option>
+    <option value="C">Critical only</option>
+    <option value="H">High + Critical</option>
+    <option value="M">Med + above</option>
+  </select>
+  <label style="display:flex;align-items:center;gap:4px;cursor:pointer;margin-left:4px">
+    <input type="checkbox" id="fDelay"> Delay history only
+  </label>
+  <button onclick="render()" style="margin-left:8px;padding:5px 14px;background:#1a1a2e;color:white;border:none;border-radius:5px;cursor:pointer;font-size:11px">Apply</button>
+</div>
+<div class="legend">
+  <div class="li"><div class="ld" style="background:#d4edda"></div>Low (&lt;0.5x)</div>
+  <div class="li"><div class="ld" style="background:#cce5ff"></div>Normal (0.5-1.5x)</div>
+  <div class="li"><div class="ld" style="background:#fff3cd"></div>Medium (1.5-2x)</div>
+  <div class="li"><div class="ld" style="background:#f8d7da"></div>High (2-3x)</div>
+  <div class="li"><div class="ld" style="background:#c0392b"></div>Critical (3x+)</div>
+  <div class="li" style="margin-left:8px"><span class="b-hab">HAB</span>&nbsp;Invented recurring-delay flag</div>
+  <div class="li"><span class="b-dly">DLY</span>&nbsp;Invented delay flag</div>
+  <div class="li" style="color:#aaa;font-size:10px;margin-left:8px">Top=Qty &middot; Bottom=POs &middot; Color=vs invented baseline</div>
+</div>
+<div class="sbar" id="sbar"></div>
+<div class="wrap"><table id="tbl"></table></div>
+<div class="tip" id="tip"></div>
+<script>
+var D = {"months":["2030-01","2030-02","2030-03","2030-04","2030-05","2030-06"],"month_labels":{"2030-01":"Jan 2030","2030-02":"Feb 2030","2030-03":"Mar 2030","2030-04":"Apr 2030","2030-05":"May 2030","2030-06":"Jun 2030"},"suppliers":["AAA","BBB","CCC"],"divisions":["Division A","Division B"],"garment_types":["Type A","Type B"],"l1":{"AAA":{"2030-01":{"qty":180,"po":4,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-02":{"qty":540,"po":4,"rrp":10800,"fob":3240,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-03":{"qty":720,"po":4,"rrp":14400,"fob":4320,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"},"2030-04":{"qty":990,"po":4,"rrp":19800,"fob":5940,"fob_cur":"USD","ratio":2.2,"src":"synthetic_baseline"},"2030-05":{"qty":1440,"po":4,"rrp":28800,"fob":8640,"fob_cur":"USD","ratio":3.2,"src":"synthetic_baseline"},"2030-06":{"qty":450,"po":4,"rrp":9000,"fob":2700,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"}},"BBB":{"2030-01":{"qty":630,"po":4,"rrp":12600,"fob":3780,"fob_cur":"USD","ratio":1.4,"src":"synthetic_baseline"},"2030-02":{"qty":270,"po":4,"rrp":5400,"fob":1620,"fob_cur":"USD","ratio":0.6,"src":"synthetic_baseline"},"2030-03":{"qty":900,"po":4,"rrp":18000,"fob":5400,"fob_cur":"USD","ratio":2,"src":"synthetic_baseline"},"2030-04":{"qty":1350,"po":4,"rrp":27000,"fob":8100,"fob_cur":"USD","ratio":3,"src":"synthetic_baseline"},"2030-05":{"qty":450,"po":4,"rrp":9000,"fob":2700,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"},"2030-06":{"qty":720,"po":4,"rrp":14400,"fob":4320,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"}},"CCC":{"2030-01":{"qty":360,"po":4,"rrp":7200,"fob":2160,"fob_cur":"USD","ratio":0.8,"src":"synthetic_baseline"},"2030-02":{"qty":810,"po":4,"rrp":16200,"fob":4860,"fob_cur":"USD","ratio":1.8,"src":"synthetic_baseline"},"2030-03":{"qty":180,"po":4,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-04":{"qty":540,"po":4,"rrp":10800,"fob":3240,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-05":{"qty":1170,"po":4,"rrp":23400,"fob":7020,"fob_cur":"USD","ratio":2.6,"src":"synthetic_baseline"},"2030-06":{"qty":1620,"po":4,"rrp":32400,"fob":9720,"fob_cur":"USD","ratio":3.6,"src":"synthetic_baseline"}}},"l2":{"AAA||Type A":{"2030-01":{"qty":60,"po":2,"rrp":1200,"fob":360,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-02":{"qty":180,"po":2,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-03":{"qty":240,"po":2,"rrp":4800,"fob":1440,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"},"2030-04":{"qty":330,"po":2,"rrp":6600,"fob":1980,"fob_cur":"USD","ratio":2.2,"src":"synthetic_baseline"},"2030-05":{"qty":480,"po":2,"rrp":9600,"fob":2880,"fob_cur":"USD","ratio":3.2,"src":"synthetic_baseline"},"2030-06":{"qty":150,"po":2,"rrp":3000,"fob":900,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"}},"AAA||Type B":{"2030-01":{"qty":120,"po":2,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-02":{"qty":360,"po":2,"rrp":7200,"fob":2160,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-03":{"qty":480,"po":2,"rrp":9600,"fob":2880,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"},"2030-04":{"qty":660,"po":2,"rrp":13200,"fob":3960,"fob_cur":"USD","ratio":2.2,"src":"synthetic_baseline"},"2030-05":{"qty":960,"po":2,"rrp":19200,"fob":5760,"fob_cur":"USD","ratio":3.2,"src":"synthetic_baseline"},"2030-06":{"qty":300,"po":2,"rrp":6000,"fob":1800,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"}},"BBB||Type A":{"2030-01":{"qty":210,"po":2,"rrp":4200,"fob":1260,"fob_cur":"USD","ratio":1.4,"src":"synthetic_baseline"},"2030-02":{"qty":90,"po":2,"rrp":1800,"fob":540,"fob_cur":"USD","ratio":0.6,"src":"synthetic_baseline"},"2030-03":{"qty":300,"po":2,"rrp":6000,"fob":1800,"fob_cur":"USD","ratio":2,"src":"synthetic_baseline"},"2030-04":{"qty":450,"po":2,"rrp":9000,"fob":2700,"fob_cur":"USD","ratio":3,"src":"synthetic_baseline"},"2030-05":{"qty":150,"po":2,"rrp":3000,"fob":900,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"},"2030-06":{"qty":240,"po":2,"rrp":4800,"fob":1440,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"}},"BBB||Type B":{"2030-01":{"qty":420,"po":2,"rrp":8400,"fob":2520,"fob_cur":"USD","ratio":1.4,"src":"synthetic_baseline"},"2030-02":{"qty":180,"po":2,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":0.6,"src":"synthetic_baseline"},"2030-03":{"qty":600,"po":2,"rrp":12000,"fob":3600,"fob_cur":"USD","ratio":2,"src":"synthetic_baseline"},"2030-04":{"qty":900,"po":2,"rrp":18000,"fob":5400,"fob_cur":"USD","ratio":3,"src":"synthetic_baseline"},"2030-05":{"qty":300,"po":2,"rrp":6000,"fob":1800,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"},"2030-06":{"qty":480,"po":2,"rrp":9600,"fob":2880,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"}},"CCC||Type A":{"2030-01":{"qty":120,"po":2,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":0.8,"src":"synthetic_baseline"},"2030-02":{"qty":270,"po":2,"rrp":5400,"fob":1620,"fob_cur":"USD","ratio":1.8,"src":"synthetic_baseline"},"2030-03":{"qty":60,"po":2,"rrp":1200,"fob":360,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-04":{"qty":180,"po":2,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-05":{"qty":390,"po":2,"rrp":7800,"fob":2340,"fob_cur":"USD","ratio":2.6,"src":"synthetic_baseline"},"2030-06":{"qty":540,"po":2,"rrp":10800,"fob":3240,"fob_cur":"USD","ratio":3.6,"src":"synthetic_baseline"}},"CCC||Type B":{"2030-01":{"qty":240,"po":2,"rrp":4800,"fob":1440,"fob_cur":"USD","ratio":0.8,"src":"synthetic_baseline"},"2030-02":{"qty":540,"po":2,"rrp":10800,"fob":3240,"fob_cur":"USD","ratio":1.8,"src":"synthetic_baseline"},"2030-03":{"qty":120,"po":2,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-04":{"qty":360,"po":2,"rrp":7200,"fob":2160,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-05":{"qty":780,"po":2,"rrp":15600,"fob":4680,"fob_cur":"USD","ratio":2.6,"src":"synthetic_baseline"},"2030-06":{"qty":1080,"po":2,"rrp":21600,"fob":6480,"fob_cur":"USD","ratio":3.6,"src":"synthetic_baseline"}}},"l3":{"AAA||Type A||Division A":{"2030-01":{"qty":20,"po":1,"rrp":400,"fob":120,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-02":{"qty":60,"po":1,"rrp":1200,"fob":360,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-03":{"qty":80,"po":1,"rrp":1600,"fob":480,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"},"2030-04":{"qty":110,"po":1,"rrp":2200,"fob":660,"fob_cur":"USD","ratio":2.2,"src":"synthetic_baseline"},"2030-05":{"qty":160,"po":1,"rrp":3200,"fob":960,"fob_cur":"USD","ratio":3.2,"src":"synthetic_baseline"},"2030-06":{"qty":50,"po":1,"rrp":1000,"fob":300,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"}},"AAA||Type A||Division B":{"2030-01":{"qty":40,"po":1,"rrp":800,"fob":240,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-02":{"qty":120,"po":1,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-03":{"qty":160,"po":1,"rrp":3200,"fob":960,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"},"2030-04":{"qty":220,"po":1,"rrp":4400,"fob":1320,"fob_cur":"USD","ratio":2.2,"src":"synthetic_baseline"},"2030-05":{"qty":320,"po":1,"rrp":6400,"fob":1920,"fob_cur":"USD","ratio":3.2,"src":"synthetic_baseline"},"2030-06":{"qty":100,"po":1,"rrp":2000,"fob":600,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"}},"AAA||Type B||Division A":{"2030-01":{"qty":40,"po":1,"rrp":800,"fob":240,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-02":{"qty":120,"po":1,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-03":{"qty":160,"po":1,"rrp":3200,"fob":960,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"},"2030-04":{"qty":220,"po":1,"rrp":4400,"fob":1320,"fob_cur":"USD","ratio":2.2,"src":"synthetic_baseline"},"2030-05":{"qty":320,"po":1,"rrp":6400,"fob":1920,"fob_cur":"USD","ratio":3.2,"src":"synthetic_baseline"},"2030-06":{"qty":100,"po":1,"rrp":2000,"fob":600,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"}},"AAA||Type B||Division B":{"2030-01":{"qty":80,"po":1,"rrp":1600,"fob":480,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-02":{"qty":240,"po":1,"rrp":4800,"fob":1440,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-03":{"qty":320,"po":1,"rrp":6400,"fob":1920,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"},"2030-04":{"qty":440,"po":1,"rrp":8800,"fob":2640,"fob_cur":"USD","ratio":2.2,"src":"synthetic_baseline"},"2030-05":{"qty":640,"po":1,"rrp":12800,"fob":3840,"fob_cur":"USD","ratio":3.2,"src":"synthetic_baseline"},"2030-06":{"qty":200,"po":1,"rrp":4000,"fob":1200,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"}},"BBB||Type A||Division A":{"2030-01":{"qty":70,"po":1,"rrp":1400,"fob":420,"fob_cur":"USD","ratio":1.4,"src":"synthetic_baseline"},"2030-02":{"qty":30,"po":1,"rrp":600,"fob":180,"fob_cur":"USD","ratio":0.6,"src":"synthetic_baseline"},"2030-03":{"qty":100,"po":1,"rrp":2000,"fob":600,"fob_cur":"USD","ratio":2,"src":"synthetic_baseline"},"2030-04":{"qty":150,"po":1,"rrp":3000,"fob":900,"fob_cur":"USD","ratio":3,"src":"synthetic_baseline"},"2030-05":{"qty":50,"po":1,"rrp":1000,"fob":300,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"},"2030-06":{"qty":80,"po":1,"rrp":1600,"fob":480,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"}},"BBB||Type A||Division B":{"2030-01":{"qty":140,"po":1,"rrp":2800,"fob":840,"fob_cur":"USD","ratio":1.4,"src":"synthetic_baseline"},"2030-02":{"qty":60,"po":1,"rrp":1200,"fob":360,"fob_cur":"USD","ratio":0.6,"src":"synthetic_baseline"},"2030-03":{"qty":200,"po":1,"rrp":4000,"fob":1200,"fob_cur":"USD","ratio":2,"src":"synthetic_baseline"},"2030-04":{"qty":300,"po":1,"rrp":6000,"fob":1800,"fob_cur":"USD","ratio":3,"src":"synthetic_baseline"},"2030-05":{"qty":100,"po":1,"rrp":2000,"fob":600,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"},"2030-06":{"qty":160,"po":1,"rrp":3200,"fob":960,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"}},"BBB||Type B||Division A":{"2030-01":{"qty":140,"po":1,"rrp":2800,"fob":840,"fob_cur":"USD","ratio":1.4,"src":"synthetic_baseline"},"2030-02":{"qty":60,"po":1,"rrp":1200,"fob":360,"fob_cur":"USD","ratio":0.6,"src":"synthetic_baseline"},"2030-03":{"qty":200,"po":1,"rrp":4000,"fob":1200,"fob_cur":"USD","ratio":2,"src":"synthetic_baseline"},"2030-04":{"qty":300,"po":1,"rrp":6000,"fob":1800,"fob_cur":"USD","ratio":3,"src":"synthetic_baseline"},"2030-05":{"qty":100,"po":1,"rrp":2000,"fob":600,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"},"2030-06":{"qty":160,"po":1,"rrp":3200,"fob":960,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"}},"BBB||Type B||Division B":{"2030-01":{"qty":280,"po":1,"rrp":5600,"fob":1680,"fob_cur":"USD","ratio":1.4,"src":"synthetic_baseline"},"2030-02":{"qty":120,"po":1,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":0.6,"src":"synthetic_baseline"},"2030-03":{"qty":400,"po":1,"rrp":8000,"fob":2400,"fob_cur":"USD","ratio":2,"src":"synthetic_baseline"},"2030-04":{"qty":600,"po":1,"rrp":12000,"fob":3600,"fob_cur":"USD","ratio":3,"src":"synthetic_baseline"},"2030-05":{"qty":200,"po":1,"rrp":4000,"fob":1200,"fob_cur":"USD","ratio":1,"src":"synthetic_baseline"},"2030-06":{"qty":320,"po":1,"rrp":6400,"fob":1920,"fob_cur":"USD","ratio":1.6,"src":"synthetic_baseline"}},"CCC||Type A||Division A":{"2030-01":{"qty":40,"po":1,"rrp":800,"fob":240,"fob_cur":"USD","ratio":0.8,"src":"synthetic_baseline"},"2030-02":{"qty":90,"po":1,"rrp":1800,"fob":540,"fob_cur":"USD","ratio":1.8,"src":"synthetic_baseline"},"2030-03":{"qty":20,"po":1,"rrp":400,"fob":120,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-04":{"qty":60,"po":1,"rrp":1200,"fob":360,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-05":{"qty":130,"po":1,"rrp":2600,"fob":780,"fob_cur":"USD","ratio":2.6,"src":"synthetic_baseline"},"2030-06":{"qty":180,"po":1,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":3.6,"src":"synthetic_baseline"}},"CCC||Type A||Division B":{"2030-01":{"qty":80,"po":1,"rrp":1600,"fob":480,"fob_cur":"USD","ratio":0.8,"src":"synthetic_baseline"},"2030-02":{"qty":180,"po":1,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":1.8,"src":"synthetic_baseline"},"2030-03":{"qty":40,"po":1,"rrp":800,"fob":240,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-04":{"qty":120,"po":1,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-05":{"qty":260,"po":1,"rrp":5200,"fob":1560,"fob_cur":"USD","ratio":2.6,"src":"synthetic_baseline"},"2030-06":{"qty":360,"po":1,"rrp":7200,"fob":2160,"fob_cur":"USD","ratio":3.6,"src":"synthetic_baseline"}},"CCC||Type B||Division A":{"2030-01":{"qty":80,"po":1,"rrp":1600,"fob":480,"fob_cur":"USD","ratio":0.8,"src":"synthetic_baseline"},"2030-02":{"qty":180,"po":1,"rrp":3600,"fob":1080,"fob_cur":"USD","ratio":1.8,"src":"synthetic_baseline"},"2030-03":{"qty":40,"po":1,"rrp":800,"fob":240,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-04":{"qty":120,"po":1,"rrp":2400,"fob":720,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-05":{"qty":260,"po":1,"rrp":5200,"fob":1560,"fob_cur":"USD","ratio":2.6,"src":"synthetic_baseline"},"2030-06":{"qty":360,"po":1,"rrp":7200,"fob":2160,"fob_cur":"USD","ratio":3.6,"src":"synthetic_baseline"}},"CCC||Type B||Division B":{"2030-01":{"qty":160,"po":1,"rrp":3200,"fob":960,"fob_cur":"USD","ratio":0.8,"src":"synthetic_baseline"},"2030-02":{"qty":360,"po":1,"rrp":7200,"fob":2160,"fob_cur":"USD","ratio":1.8,"src":"synthetic_baseline"},"2030-03":{"qty":80,"po":1,"rrp":1600,"fob":480,"fob_cur":"USD","ratio":0.4,"src":"synthetic_baseline"},"2030-04":{"qty":240,"po":1,"rrp":4800,"fob":1440,"fob_cur":"USD","ratio":1.2,"src":"synthetic_baseline"},"2030-05":{"qty":520,"po":1,"rrp":10400,"fob":3120,"fob_cur":"USD","ratio":2.6,"src":"synthetic_baseline"},"2030-06":{"qty":720,"po":1,"rrp":14400,"fob":4320,"fob_cur":"USD","ratio":3.6,"src":"synthetic_baseline"}}},"habitual":{"BBB":true},"delay_months":{"AAA":["2030-02"],"BBB":["2030-04"],"CCC":[]}};
+
+var expanded = {};
+var CELLS = {};
+var cellN = 0;
+
+function storeCell(obj) {
+  var id = 'c' + cellN++;
+  CELLS[id] = obj;
+  return id;
+}
+
+function getRisk(r) {
+  if (!r || r === 0) return 'E';
+  if (r >= 3) return 'C';
+  if (r >= 2) return 'H';
+  if (r >= 1.5) return 'M';
+  if (r >= 0.5) return 'N';
+  return 'L';
+}
+function getCls(r) {
+  var m = {E:'c-e',L:'c-l',N:'c-n',M:'c-m',H:'c-h',C:'c-c'};
+  return m[getRisk(r)] || 'c-e';
+}
+function fQ(n) {
+  if (!n) return '0';
+  return n >= 1000 ? (n/1000).toFixed(1) + 'k' : String(n);
+}
+function fRRP(n) {
+  if (!n || n === 0) return '-';
+  if (n >= 1000000) return 'A$' + (n/1000000).toFixed(2) + 'M';
+  if (n >= 1000)    return 'A$' + (n/1000).toFixed(1) + 'K';
+  return 'A$' + Math.round(n);
+}
+function fFOB(n, cur) {
+  if (!n || n === 0) return '-';
+  var sym = {USD:'US$', AUD:'A$', EUR:'€', ZAR:'R'}[cur] || (cur ? cur+' ' : 'US$');
+  if (n >= 1000000) return sym + (n/1000000).toFixed(2) + 'M';
+  if (n >= 1000)    return sym + (n/1000).toFixed(1) + 'K';
+  return sym + Math.round(n);
+}
+
+var RLABEL = {E:'-',L:'Low',N:'Normal',M:'Medium',H:'High',C:'Critical'};
+var RCOLOR = {E:'#888',L:'#27ae60',N:'#2980b9',M:'#f39c12',H:'#e67e22',C:'#c0392b'};
+
+function showTip(e, cid) {
+  var d = CELLS[cid]; if (!d) return;
+  var risk = getRisk(d.ratio);
+  var avgSrc = d.src === 'synthetic_baseline' ? 'invented baseline' : 'n/a';
+  var tip = document.getElementById('tip');
+  var ml = D.month_labels[d.month] || d.month;
+  var fobCur = d.fob_cur || 'USD';
+  tip.innerHTML =
+    '<div class="tip-title">' + d.sup + '</div>' +
+    '<div class="tip-row"><span class="tip-lbl">Garment Type</span><span class="tip-val">' + d.gt + '</span></div>' +
+    '<div class="tip-row"><span class="tip-lbl">Month</span><span class="tip-val">' + ml + '</span></div>' +
+    '<div class="tip-row"><span class="tip-lbl">Qty Ordered</span><span class="tip-val">' + d.qty.toLocaleString() + ' units</span></div>' +
+    '<div class="tip-row"><span class="tip-lbl">PO Count</span><span class="tip-val">' + d.po + ' POs</span></div>' +
+    '<div class="tip-row"><span class="tip-lbl">RRP (AUD)</span><span class="tip-val">' + fRRP(d.rrp) + '</span></div>' +
+    '<div class="tip-row"><span class="tip-lbl">FOB (' + fobCur + ')</span><span class="tip-val">' + fFOB(d.fob, fobCur) + '</span></div>' +
+    '<div class="tip-row"><span class="tip-lbl">vs ' + avgSrc + '</span><span class="tip-val" style="color:' + RCOLOR[risk] + '">' + d.ratio + 'x  ' + RLABEL[risk] + '</span></div>';
+  tip.style.display = 'block';
+  positionTip(e.clientX, e.clientY);
+}
+function positionTip(x, y) {
+  var tip = document.getElementById('tip');
+  tip.style.left = Math.min(x+16, window.innerWidth-250) + 'px';
+  tip.style.top  = Math.min(y-10, window.innerHeight-280) + 'px';
+}
+function hideTip() { document.getElementById('tip').style.display = 'none'; }
+document.addEventListener('mousemove', function(e) {
+  var tip = document.getElementById('tip');
+  if (tip.style.display !== 'none') positionTip(e.clientX, e.clientY);
+});
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('[data-k]');
+  if (!el) return;
+  var k = el.getAttribute('data-k');
+  expanded[k] = !expanded[k];
+  render();
+});
+document.addEventListener('mouseover', function(e) {
+  var el = e.target.closest('[data-cid]');
+  if (el) showTip(e, el.getAttribute('data-cid'));
+});
+document.addEventListener('mouseout', function(e) {
+  var el = e.target.closest('[data-cid]');
+  if (el) hideTip();
+});
+function getMonths() {
+  var from = document.getElementById('fFrom').value.trim();
+  var to   = document.getElementById('fTo').value.trim();
+  return D.months.filter(function(m) { return (!from||m>=from)&&(!to||m<=to); });
+}
+function initFilters() {
+  var s = document.getElementById('fSup');
+  var d = document.getElementById('fDiv');
+  var g = document.getElementById('fGT');
+  D.suppliers.forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;s.appendChild(o);});
+  D.divisions.forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;d.appendChild(o);});
+  D.garment_types.forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;g.appendChild(o);});
+}
+var RORD = {E:0,L:0,N:1,M:2,H:3,C:4};
+function escAttr(s) { return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+function render() {
+  cellN = 0; CELLS = {};
+  var supF      = document.getElementById('fSup').value;
+  var divF      = document.getElementById('fDiv').value;
+  var gtF       = document.getElementById('fGT').value;
+  var riskF     = document.getElementById('fRisk').value;
+  var delayOnly = document.getElementById('fDelay').checked;
+  var months    = getMonths();
+  var riskMin   = {C:4,H:3,M:2}[riskF] || 0;
+  if (supF && !expanded['sup:'+supF]) expanded['sup:'+supF] = true;
+  var sups = D.suppliers.filter(function(sup) {
+    if (supF && sup !== supF) return false;
+    var l1 = D.l1[sup] || {};
+    if (!months.some(function(m){return l1[m];})) return false;
+    if (divF) {
+      var has = Object.keys(D.l3).some(function(k) {
+        return k.indexOf(sup+'||') === 0 && k.indexOf('||'+divF) !== -1 &&
+               months.some(function(m){return D.l3[k]&&D.l3[k][m];});
+      });
+      if (!has) return false;
+    }
+    if (gtF && !months.some(function(m){return (D.l2[sup+'||'+gtF]||{})[m];})) return false;
+    if (riskMin > 0) {
+      var mx = months.reduce(function(a,m){var d=l1[m];return d?Math.max(a,RORD[getRisk(d.ratio)]):a;},0);
+      if (mx < riskMin) return false;
+    }
+    if (delayOnly && !D.habitual[sup] && !(D.delay_months[sup]&&D.delay_months[sup].length>0)) return false;
+    return true;
+  });
+  var crit=0,high=0,med=0;
+  sups.forEach(function(sup){
+    months.forEach(function(m){
+      var d=(D.l1[sup]||{})[m]; if(!d) return;
+      var r=getRisk(d.ratio);
+      if(r==='C')crit++; else if(r==='H')high++; else if(r==='M')med++;
+    });
+  });
+  document.getElementById('sbar').innerHTML =
+    '<div class="sc"><b>'+sups.length+'</b>Suppliers</div>'+
+    '<div class="sc"><b class="red">'+crit+'</b>Critical</div>'+
+    '<div class="sc"><b class="orange">'+high+'</b>High</div>'+
+    '<div class="sc"><b>'+med+'</b>Medium</div>'+
+    '<div class="sc" style="margin-left:auto;font-size:10px;color:#aaa">'+(months[0]||'')+' to '+(months[months.length-1]||'')+'</div>';
+  var rows = [];
+  var hrow = '<thead><tr><th class="h-name">Supplier / Garment Type / Division</th>';
+  months.forEach(function(m){hrow += '<th>'+(D.month_labels[m]||m)+'</th>';});
+  hrow += '</tr></thead>';
+  rows.push(hrow);
+  rows.push('<tbody>');
+  sups.forEach(function(sup) {
+    var supKey   = 'sup:' + sup;
+    var isExpSup = !!expanded[supKey];
+    var l1data   = D.l1[sup] || {};
+    var isHab    = D.habitual[sup];
+    var dlyMs    = D.delay_months[sup] || [];
+    var r = '<tr class="row-sup">';
+    r += '<td><div class="nc s-nc" data-k="' + escAttr(supKey) + '">';
+    r += '<span class="arr'+(isExpSup?' open':'')+'">&#9658;</span>';
+    r += '<span class="nm" title="'+escAttr(sup)+'">'+sup+'</span>';
+    if (isHab) r += '<span class="b-hab">HAB</span>';
+    r += '</div></td>';
+    months.forEach(function(m) {
+      var d = l1data[m];
+      if (!d) { r += '<td class="mc"><div class="cell c-e"><div class="cq" style="color:#ccc">-</div></div></td>'; return; }
+      var cid = storeCell({sup:sup,gt:'ALL',month:m,qty:d.qty,po:d.po,rrp:d.rrp,fob:d.fob,fob_cur:d.fob_cur,ratio:d.ratio,src:d.src||''});
+      r += '<td class="mc"><div class="cell '+getCls(d.ratio)+'" data-cid="'+cid+'">';
+      r += '<div class="cq">'+fQ(d.qty)+'</div><div class="cp">'+d.po+' POs</div></div></td>';
+    });
+    r += '</tr>';
+    rows.push(r);
+    if (!isExpSup) return;
+    var gts = [];
+    Object.keys(D.l2).forEach(function(k) {
+      if (k.indexOf(sup+'||') === 0) { var gt=k.split('||')[1]; if(gts.indexOf(gt)===-1) gts.push(gt); }
+    });
+    gts.sort();
+    gts.forEach(function(gt) {
+      if (gtF && gt !== gtF) return;
+      var gtKey   = 'gt:' + sup + '||' + gt;
+      var isExpGT = !!expanded[gtKey];
+      var l2data  = D.l2[sup+'||'+gt] || {};
+      var dlyInView = months.filter(function(m){return dlyMs.indexOf(m)!==-1;});
+      var dlyLabel  = dlyInView.map(function(m){return D.month_labels[m]||m;}).join(', ');
+      var r2 = '<tr class="row-gt">';
+      r2 += '<td><div class="nc g-nc" data-k="' + escAttr(gtKey) + '">';
+      r2 += '<span class="arr'+(isExpGT?' open':'')+'">&#9658;</span>';
+      r2 += '<span class="nm">'+gt+'</span>';
+      if (dlyInView.length>0) r2 += '<span class="b-dly" title="'+escAttr(dlyLabel)+'">DLY: '+dlyLabel+'</span>';
+      r2 += '</div></td>';
+      months.forEach(function(m) {
+        var d = l2data[m];
+        var isDly = dlyMs.indexOf(m) !== -1;
+        if (!d) {
+          r2 += '<td class="mc"><div class="cell c-e'+(isDly?' dly-cell':'')+'"><div class="cq" style="color:#ccc">-</div></div></td>';
+          return;
+        }
+        var cid = storeCell({sup:sup,gt:gt,month:m,qty:d.qty,po:d.po,rrp:d.rrp,fob:d.fob,fob_cur:d.fob_cur,ratio:d.ratio,src:d.src||''});
+        r2 += '<td class="mc"><div class="cell '+getCls(d.ratio)+(isDly?' dly-cell':'')+' " data-cid="'+cid+'">';
+        r2 += '<div class="cq">'+fQ(d.qty)+'</div><div class="cp">'+d.po+' POs</div></div></td>';
+      });
+      r2 += '</tr>';
+      rows.push(r2);
+      if (!isExpGT) return;
+      var divs = [];
+      Object.keys(D.l3).forEach(function(k) {
+        if (k.indexOf(sup+'||'+gt+'||') === 0) { var dv=k.split('||')[2]; if(divs.indexOf(dv)===-1) divs.push(dv); }
+      });
+      divs.sort();
+      divs.forEach(function(div) {
+        if (divF && div !== divF) return;
+        var l3data = D.l3[sup+'||'+gt+'||'+div] || {};
+        var r3 = '<tr class="row-div"><td><div class="nc d-nc">'+div+'</div></td>';
+        months.forEach(function(m) {
+          var d = l3data[m];
+          if (!d) { r3 += '<td class="mc"><div class="cell c-e" style="opacity:.35"><div class="cq" style="color:#ccc">-</div></div></td>'; return; }
+          var cid = storeCell({sup:sup+' ('+div+')',gt:gt,month:m,qty:d.qty,po:d.po,rrp:d.rrp,fob:d.fob,fob_cur:d.fob_cur,ratio:0,src:'n/a'});
+          r3 += '<td class="mc"><div class="cell c-n" style="opacity:.85" data-cid="'+cid+'">';
+          r3 += '<div class="cq">'+fQ(d.qty)+'</div><div class="cp">'+d.po+'</div></div></td>';
+        });
+        r3 += '</tr>';
+        rows.push(r3);
+      });
+    });
+  });
+  rows.push('</tbody>');
+  document.getElementById('tbl').innerHTML = rows.join('');
+}
+initFilters();
+render();
+</script>
+
+
+
+
+</body>
+</html>
